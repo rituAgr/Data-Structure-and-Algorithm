@@ -11,16 +11,20 @@ import java.util.ArrayList;
 public class Kadane_Algo {
 	public static void main(String[] args)
 	{
-		int[] arr={-1,3,-2,5,-6,1};//{-2, -3, 4, -1, -2, 1, 5, -3,6};
+		int[] arr={-2, -3, 4, -1, -5, 2, -1,5, -3,-10};//{-1,-3,-2,-2, -3};//5,-6,1};//{-1,-1,-1,-1};//)
 		ArrayList<Integer> res=Kadane(arr);
-		for(int k=res.get(0);k<=res.get(1);k++)
-			System.out.print(arr[k]+"   ");
-		System.out.println("\nThe maximum sum is "+res.get(2));
+		if(res==null)
+			System.out.println("\nno element ");
+		else {
+			for (int k = res.get(0); k <= res.get(1); k++)
+				System.out.print(arr[k] + "   ");
+			System.out.println("\nThe maximum sum is " + res.get(2));
+		}
 	}
-	 static ArrayList<Integer>  Kadane(int[] arr)
+	static ArrayList<Integer>  Kadane(int[] arr)
 	{
 		int maxSum=0,currMaxSum=0;
-		int start=-1,end=-1;
+		int start=-1,max_end=-1,max_start=-1;
 		for(int i=0;i<arr.length;i++)
 		{
 			currMaxSum=currMaxSum+arr[i];
@@ -28,21 +32,21 @@ public class Kadane_Algo {
 			{
 				currMaxSum=0;
 				start=-1;
-				continue;
 			}
 			else if(start<0)
-					start=i;
+				start=i;
 			if(maxSum<currMaxSum)
 			{
+				max_start=start;
 				maxSum=currMaxSum;
-				end=i;
+				max_end=i;
 			}
 		}
 		if(maxSum<=0)
 			return null;
 		ArrayList<Integer> res=new ArrayList<Integer>();
-		res.add(start);
-		res.add(end);
+		res.add(max_start);
+		res.add(max_end);
 		res.add(maxSum);
 		return res;
 	}

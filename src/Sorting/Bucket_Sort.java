@@ -27,7 +27,7 @@ class Do_Sort
 			if(element<min)
 				min=element;
 		}
-		ArrayList<ArrayList<Integer>> buckets= new ArrayList<ArrayList<Integer>>(10);
+		ArrayList<ArrayList<Integer>> buckets= new ArrayList<ArrayList<Integer>>();
 		for(int i=0;i<10;i++)
 			buckets.add(new ArrayList<Integer>());
 		for(int i=0;i<array.length;i++)

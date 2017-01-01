@@ -43,6 +43,13 @@ public class LongestBiotonicSubsequence {
 		for(int k=0;k<n;k++)
 			if(buffer1[k]+buffer2[k]>max)
 				max=buffer1[k]+buffer2[k];
+
+		for(int i=0;i<n;i++)
+			System.out.print(arr[buffer1[i]]+" ");
+		System.out.println();
+		for(int i=n-1;i>=0;i--)
+			System.out.print(arr[buffer2[i]]+" ");
+		System.out.println();
 		return max-1;
 	}
 	

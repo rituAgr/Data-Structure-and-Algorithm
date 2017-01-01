@@ -23,7 +23,8 @@ public class Quick_sort {
 	}
 	public static int Randomized_Partition(int array[],int start, int end)
 	{
-		int pivotIndex= start+(int)(Math.random()*(end-start)+1);
+		int range=end-start+1;
+		int pivotIndex=start + (int)(Math.random()*range);
 		//This 1 is added to Math.random func because range is [0-1) that is exclude exact one
 		swap(array,pivotIndex,end);
 		int pivot=array[end];
