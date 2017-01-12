@@ -9,17 +9,9 @@ public class ValidBST {
 	}
 	public static boolean isValid(int[] pre)
 	{
-		int root=Integer.MIN_VALUE;
-		Stack<Integer> st = new Stack<Integer>();
-		
-		for(int i=0;i<pre.length;i++)
-		{
-			if(pre[i]<root)
-				return false;
-			while(!st.isEmpty()&&st.peek()<pre[i])
-				root=st.pop();
-			st.push(pre[i]);
-		}
+		//Generate Inorder traversal by just sorting.
+		//try to construct tree
+		//If there is any prolem, return false;
 		return true;
 	}
 }

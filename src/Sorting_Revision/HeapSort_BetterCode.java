@@ -16,11 +16,12 @@ import java.util.Arrays;
  * - heapify()
  * - heapSort()
  * A helper method swap()
+ * VV Imp => Heapify is called just once; whereas MaxHeap (or Minheap) is called again & again
  */
 public class HeapSort_BetterCode {
     public static void main(String args[])
     {
-        int[] arr={4,1,0,5,3,0,2,10};
+        int[] arr={12,0,1,11, 12, 13, 5, 6, 7};//{4,1,0,5,3,0,2,10};
         heapSort(arr);
         System.out.print(Arrays.toString(arr));
     }
