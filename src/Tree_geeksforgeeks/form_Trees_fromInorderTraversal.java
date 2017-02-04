@@ -15,7 +15,7 @@ public class form_Trees_fromInorderTraversal {
 		}
 	}
 	public static void main(String[] args) {
-		int inOrder[]={4,5,6,7};
+		int inOrder[]={4,5,6};
 		ArrayList<Node> res=getTree(inOrder, 0,inOrder.length-1);
 		for(int i=0;i<res.size();i++)
 		{

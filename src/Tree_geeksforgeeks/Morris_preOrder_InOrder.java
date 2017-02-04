@@ -28,8 +28,8 @@ public class Morris_preOrder_InOrder {
 		root.left.left.right.left=new Node(-1);
 		ArrayList<Integer> res=Morris_InOrder(root);
 		System.out.println("The inorder traversal is "+res.toString());
-		res=Morris_PreOrder(root);
-		System.out.println("The Preorder traversal is "+res.toString());
+		ArrayList<Integer> res1=Morris_PreOrder(root);
+		System.out.println("The Preorder traversal is "+res1.toString());
 	}
 	static ArrayList<Integer> Morris_InOrder(Node root)
 	{
@@ -42,8 +42,9 @@ public class Morris_preOrder_InOrder {
 			if(curr.left!=null)
 			{
 				Node right_most=find_Predecessor(curr);
-				if(right_most==curr)
+				if(right_most.right==curr)
 				{
+					right_most.right=null;
 					res.add(curr.data);
 					curr=curr.right;
 				}
@@ -65,48 +66,43 @@ public class Morris_preOrder_InOrder {
 	{
 		if(root==null)
 			return null;
-		ArrayList<Integer> res = new ArrayList<Integer>();
+		ArrayList<Integer> result=new ArrayList<>();
 		Node curr=root;
 		while(curr!=null)
 		{
-			//res.add(curr.data);
 			if(curr.left!=null)
 			{
-				Node right_most=find_Predecessor(curr);
-				if(right_most==curr)
+				//The only catch is position of print statement in morris traversal method
+
+				Node node=find_Predecessor(curr);
+				if(node.right==null)
 				{
-					curr=curr.right;
+					result.add(curr.data);
+					node.right=curr;
+					curr=curr.left;
 				}
 				else
 				{
-					res.add(curr.data);
-					right_most.right=curr;
-					curr=curr.left;
-					
+					node.right=curr;
+					curr=curr.right;
 				}
-				//res.add(curr.data);
 			}
 			else
 			{
-				res.add(curr.data);
+				result.add(curr.data);
 				curr=curr.right;
 			}
 		}
-		return res;
+		return result;
 	}
 	static Node find_Predecessor(Node root)
 	{
 		Node curr=root.left;
-		while(curr.right!=null)
-		{
-			Node prev=curr;
+		if(curr==null)
+			return null;
+		while(curr.right!=null&&curr.right!=root)
 			curr=curr.right;
-			if(curr==root)
-			{
-				prev.right=null;
-				return curr;
-			}
-		}
+
 		return curr;
 	}
 }

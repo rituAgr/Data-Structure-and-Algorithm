@@ -4,7 +4,7 @@ package Graphs;/*
  */
 import java.util.Arrays;
 //import java.util.Scanner;
-public class DetectCycle_UndirectedGraph_DisjointSet 
+public class DetectCycle_UndirectedGraph_DisjointSet
 {
 	int V,E;
 	Edge[] edge;
@@ -29,6 +29,7 @@ public class DetectCycle_UndirectedGraph_DisjointSet
 	{
 		int x_key=find(parent,x);
 		int y_key=find(parent,y);
+		if(x_key==y_key)
 		parent[x_key] = y_key;
 	}
 	boolean isCycle(DetectCycle_UndirectedGraph_DisjointSet graph)

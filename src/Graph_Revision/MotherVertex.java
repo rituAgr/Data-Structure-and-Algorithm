@@ -4,6 +4,8 @@ import java.util.*;
 
 /**
  * Created by Ritu on 1/7/17.
+ * http://www.geeksforgeeks.org/find-a-mother-vertex-in-a-graph/
+ * Mother vertex are those vertices from where all other vertices can be traversed
  */
 public class MotherVertex {
     //Finding mother vertex can be done by both DFS as well as BFS,

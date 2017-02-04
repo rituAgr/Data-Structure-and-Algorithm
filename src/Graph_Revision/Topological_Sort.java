@@ -8,6 +8,8 @@ import java.util.Stack;
 /**
  * Created by Ritu on 1/7/17.
  * http://www.geeksforgeeks.org/topological-sorting/
+ * Topological sort in possible in undirected graph and directed cycle graph
+ * Topological sort is only possible with DAG(Directed acyclic graph)
  */
 public class Topological_Sort
 {
@@ -22,7 +24,6 @@ public class Topological_Sort
             for(int i=0;i<v;i++)
             {
                 LinkedList<Integer> list=new LinkedList<Integer>();
-                list.add(i);
                 hm.put(i,list);
             }
         }
@@ -57,7 +58,7 @@ public class Topological_Sort
     private static void topological_SortUtil(graph g,int start, Stack<Integer> res,boolean[] visited)
     {
         LinkedList<Integer> list=g.hm.get(start);
-        for(int i=1;i<list.size();i++)
+        for(int i=0;i<list.size();i++)
         {
             int element=list.get(i);
             if(!visited[element])

@@ -6,6 +6,7 @@ import java.util.Stack;
 /**
  * Created by Ritu on 1/8/17.
  */
+
 public class LongestPath_DAG {
     static int INF=Integer.MIN_VALUE;
     public static void main(String[] args)
@@ -22,6 +23,8 @@ public class LongestPath_DAG {
     {
         int len=graph.length;
         int[] dis=new int[len];
+        // Notes that in Longest path, we initialize the dis array with Integer.MIN_VALUE
+        //Whereas in primMSt we do it with Integer.MAX_VAlUE
         Arrays.fill(dis,INF);
         int[] parent=new int[len];
         Arrays.fill(parent,-1);
@@ -31,9 +34,6 @@ public class LongestPath_DAG {
         for(int i=0;i<len;i++)
             if(!visited[i])
                 topologicalSort(graph,st,visited,i);
-
-//        while(!st.isEmpty())
-//            System.out.print(st.pop()+" ");
 
         while(!st.isEmpty())
         {
@@ -52,7 +52,7 @@ public class LongestPath_DAG {
             }
         }
 
-    int maxDis=-1;
+        int maxDis=-1;
         int Position_des=-1;
         for(int i=0;i<dis.length;i++)
             if(maxDis<dis[i])
@@ -63,11 +63,11 @@ public class LongestPath_DAG {
 
         Stack<Integer> res=new Stack<>();
 
-            while(Position_des!=-1)
-            {
-                res.push(Position_des);
-                Position_des=parent[Position_des];
-            }
+        while(Position_des!=-1)
+        {
+            res.push(Position_des);
+            Position_des=parent[Position_des];
+        }
         System.out.println("The max distance is "+maxDis);
         System.out.println("The path is as follows - ");
         while(!res.isEmpty())

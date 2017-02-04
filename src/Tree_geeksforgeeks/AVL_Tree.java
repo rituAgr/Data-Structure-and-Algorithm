@@ -4,7 +4,10 @@ package Tree_geeksforgeeks;
  * Created by Ritu on 1/10/17.
  * http://www.geeksforgeeks.org/avl-tree-set-1-insertion/
  * https://www.youtube.com/watch?v=rbg7Qf8GkQ4
- *  Runtime complexity to insert into AVL tree is O(logn).
+ *
+ * Runtime complexity to insert into AVL tree is O(logn).
+ * Runtime complexity to search into AVL tree is O(logn).
+ * Runtime complexity to delete into AVL tree is O(logn).
  *
  *  There are four different use cases to insert into AVL tree
  * left left - needs ones right rotation
@@ -29,15 +32,61 @@ public class AVL_Tree
     {
         Node root=new Node(12);
         int[] array={8,5,4,11,18,17};
+
+        //Insetion
         for(int i:array)
             root=insert(root,i);
         Inorder(root);
-//        root.left=new Node(8);
-//        root.left.left=new Node(5);
-//        root.left.left.left=new Node(4);
-//        root.left.right=new Node(11);
-//        root.right=new Node(18);
-//        root.right.left=new Node(17);
+
+        // Searching the data in the tree is very simple
+
+        //Deletion
+        System.out.println("After deleting");
+        delete(root,11);
+        Inorder(root);
+    }
+    private static Node delete(Node root, int data)
+    {
+        if(root.data==data)
+        {
+            Node lNode=root.left;
+            Node rNode=root.right;
+            int l=getHeight(lNode);
+            int r=getHeight(rNode);
+            if(r>l)
+            {
+                Node newroot=rNode;
+                //Node shift=rNode.left;
+                //newroot.left=lNode;
+                while(rNode.left!=null)
+                    rNode=rNode.left;
+                rNode.left=lNode;
+            }
+            else
+            {
+
+            }
+        }
+        return null;
+    }
+    private static Node deleteUtil(Node node, int data)
+    {
+//        if(node==null)
+//            return null;
+//        if(node.left.data==data)
+//        {
+//
+//        }
+//        if()
+//            if(node.data==data)
+//            {
+//                this=node.left;
+//            }
+//        if(data<node.data)
+//            delete(node.left,data);
+//        else
+//            delete(node.right,data);
+        return null;
     }
     private static void Inorder(Node root)
     {
@@ -70,10 +119,6 @@ public class AVL_Tree
 
         if(Math.abs(getHeight(node.left)-getHeight(node.right))>2)
             node=check_balance(node);
-//        if((node.left==null||node.right==null)&&node.height==2)
-//            node= check_balance(node);
-//        else if((Math.abs(node.left.height-node.right.height))>=2)
-//            node=check_balance(node);
         return node;
     }
     private static Node check_balance(Node node)

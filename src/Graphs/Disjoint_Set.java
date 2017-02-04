@@ -20,10 +20,12 @@ public class Disjoint_Set {
 		hm.put(element, s);
 		set.add(hm);
 	}
-	void union(int element1, int element2)
+	boolean union(int element1, int element2)
 	{
 		Integer key1=find_Set(element1);
 		Integer key2=find_Set(element2);
+		if(key1==key2)
+			return true;
 		Set<Integer> set1=null;
 		Set<Integer> set2=null;
 		for(int i=0;i<set.size();i++)
@@ -44,7 +46,7 @@ public class Disjoint_Set {
 			else if(hm.containsKey(key2))
 				set.remove(i);
 		}
-
+return false;
 	}
 	Integer find_Set(int element)
 	{

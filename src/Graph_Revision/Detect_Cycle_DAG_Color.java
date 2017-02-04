@@ -64,9 +64,6 @@ public class Detect_Cycle_DAG_Color {
     }
     private static boolean isCycleUtil(graph g,Set<Integer> white,Set<Integer> gray,Set<Integer> black, int start)
     {
-        if(black.contains(start))
-            return false;
-
         gray.add(start);
         LinkedList<Integer> list=g.hm.get(start);
         for(int i=1;i<list.size();i++)
