@@ -4,35 +4,40 @@ import java.util.*;
 public class Excel_col_Conversion {
 
 	public static void main(String[] args) {
-		int col_num=705;
-		String col_name=find_name(col_num);
-		System.out.println(col_name);
+
+		find_name(26);
+		find_name(51);
+		find_name(52);
+		find_name(80);
+		find_name(676);
+		find_name(702);
+		find_name(705);
 	}
-	static String find_name(int num)
+	static void find_name(int num)
 	{
+		int number=num;
 		StringBuilder s = new StringBuilder();
-		HashMap <Integer,Character> hm = new HashMap<Integer,Character>();
+
 		char c ='A';
-		for(int i=1;i<=26;i++)
-		{
-			hm.put(i,c);
-			c++;
-		}
 		while(num>0)
 		{
-			int n=num%26;
-			num=num/26;
-			if(n==0)
+			int reminder=num%26;
+			if(reminder==0)
 			{
 				s.append('Z');
-				num--;
-				continue;
+				num=num/26-1;
 			}
-			c=hm.get(n);
-			s.append(c);
+			else
+			{
+				s.append((char)((reminder-1)+c));
+				num=num/26;
+			}
 		}
 		s.reverse();
-		return s.toString();
+		System.out.print(number+" -> ");
+		for(int k=0;k<s.length();k++)
+			System.out.print(s.charAt(k));
+		System.out.println();
 	}
 
 }

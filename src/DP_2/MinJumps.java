@@ -1,5 +1,6 @@
 package DP_2;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -17,22 +18,24 @@ public class MinJumps {
     {
         int l=arr.length;
         int[] len=new int[l];
+        Arrays.fill(len, Integer.MAX_VALUE);
+        len[0]=0;
 
         int[] parents=new int[l];
         Arrays.fill(parents,-1);
 
         for(int i=1;i<l;i++)
-            for(int j=0;j<=i;j++)
+            for(int j=0;j<i;j++)
             {
-                if((i-j)<=arr[j]&&(len[i]==0||len[i]>len[j]+1))
+                if(j+arr[j]>=i&&len[i]>len[j]+1)
                 {
                     len[i]=len[j]+1;
                     parents[i]=j;
                 }
             }
         System.out.println("Minimum num of jumps is "+len[l-1]);
-        for(int i=0;i<l;i++)
-            System.out.print(len[i]+" ");
+//        for(int i=0;i<l;i++)
+//            System.out.print(len[i]+" ");
 
         int index=l-1;
         Stack<Integer> st=new Stack<>();

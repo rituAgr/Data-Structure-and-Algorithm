@@ -1,4 +1,4 @@
-package Stack_Exercise.Ques1;
+package Stack_Exercise_geeksforgeeks.Ques1;
 
 public class Braces_Balancing {
 	int top;

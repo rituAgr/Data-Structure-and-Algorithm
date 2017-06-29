@@ -32,11 +32,11 @@ public class FloydWarshall
                     paths[i][j]=i;
                 else
                     paths[i][j]=-1;
-        for(int i=0;i<n;i++)
-            for(int j=0;j<n;j++)
-                for(int k=0;k<n;k++)
+        for(int k=0;k<n;k++)
+            for(int i=0;i<n;i++)
+                for(int j=0;j<n;j++)
                 {
-                    if(dist[i][k]==INF||dist[k][i]==INF)
+                    if(dist[i][k]==INF||dist[k][j]==INF)
                         continue;
                     if (dist[i][j] > dist[i][k] + dist[k][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
@@ -61,14 +61,16 @@ public class FloydWarshall
     }
     private static void printPaths(int[][] paths, int source, int destination)
     {
+        if(source==destination)
+            return;
         ArrayList<Integer> route=new ArrayList<Integer>();
+        System.out.println("Path from "+source+" to "+destination);
         route.add(destination);
         while(paths[source][destination]!=source) {
             route.add(0,paths[source][destination]);
             destination=paths[source][destination];
         }
         route.add(0,source);
-        System.out.println("Path from "+source+" to "+destination);
         System.out.println(route);
     }
 

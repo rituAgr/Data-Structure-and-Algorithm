@@ -5,7 +5,7 @@ package Advanced_DS;
  * Time complexity = O(log n)
  * http://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/
  */
-public class Searching_RotatedArray {
+public class RotatedArray_SearchingElement {
     public static void main(String args[])
     {
         int arr1[] = {5, 6, 7, 8,9, 10, 1, 2,3};// rotated towards left

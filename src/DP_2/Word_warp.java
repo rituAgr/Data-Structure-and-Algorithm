@@ -6,70 +6,83 @@ import java.util.ArrayList;
  * Created by Ritu on 2/24/17.
  */
 public class Word_warp {
-    static int INF=Integer.MAX_VALUE;
-    public static void main(String args[]){
-        String words1[] ={"Tushar","likes","to","write","code","at", "free", "time"};
-        //{"Tushar","roy", "likes","to","code"};
-
-        justify(words1, 12);
-    }
-    private static void justify(String[] words, int len)
+    public static void main(String[] args)
     {
-        int l=words.length;
-        int[][] matrix=new int[l][l];
+        String words1[] ={"Tushar","likes","to","write","code","at", "free", "time"};
+        int width1=12;
+        find(words1,width1);
+        String words2[] ={"Tushar","Roy","likes","to","code"};
+        int width2=10;
+        find(words2,width2);
+    }
+    private static void find(String[] words,int width)
+    {
+        int n=words.length;
+        int[][] costMatrix=cost(words,width);
+        int[] cost=new int[n];
+        int[] range=new int[n];
 
-        for(int i=0;i<l;i++)
+        int end=n;
+        int i=n-1;
+        while(i>=0)
         {
-            int total=-1;
-            for(int j=i;j<l;j++)
+            int j=n-1;
+            if(costMatrix[i][j]!=Integer.MAX_VALUE)
             {
-                total=total+1+words[j].length();
-                if(total>len)
-                    matrix[i][j] = INF;
-                else
-                    matrix[i][j]=(int)Math.pow((len-total),2);
+                cost[i]=costMatrix[i][j];
+                range[i]=end;
             }
-        }
-        for(int i=0;i<l;i++)
-        {
-            for(int k=0;k<l;k++)
-                System.out.print(matrix[i][k]+" ");
-            System.out.println();
-        }
-        int[] cost=new int[l];
-        int[] path=new int[l];
-
-        for(int i=(l-1);i>=0;i--)
-        {
-                cost[i]=matrix[i][l-1];
-                path[i]=l;
-
-            for(int j=(l-1);j>i;j--)
-                if (matrix[i][j-1]!=INF&&cost[i]>(matrix[i][j-1]+cost[j]))
+            else
+            {
+                int minCost=Integer.MAX_VALUE;
+                int splitPosition=j;
+                while(j>i)
                 {
-                    cost[i]=matrix[i][j-1]+cost[j];
-                    path[i]= j;
+                    if(costMatrix[i][j-1]!=Integer.MAX_VALUE&&(costMatrix[i][j-1]+cost[j])<minCost)
+                    {
+                        minCost=costMatrix[i][j-1]+cost[j];
+                        splitPosition=j;
+                    }
+                    j--;
                 }
-        }
-
-        ArrayList<String> result=new ArrayList<>();
-        int start=0;
-        while(start<l)
-        {
-            int end=path[start]-1;
-            StringBuilder s= new StringBuilder(words[start]);
-            start++;
-
-            while(start<=end)
-            {
-                s.append(" ");
-                s.append(words[start]);
-                start++;
+                cost[i]=minCost;
+                range[i]=splitPosition;
             }
-            result.add(s.toString());
+            i--;
         }
-        for(String s:result)
-            System.out.println(s);
+        System.out.println("Minimum cost is "+cost[0]);
+        // Stack<String> st=new Stack<>();
+        i=0;
+        while(i!=end)
+        {
+            printing(words,i,(range[i]-1));
+            //System.out.print(i+" to "+(range[i]-1));
+            i=range[i];
+        }
+
+    }
+    private static void printing(String[] words, int start, int end)
+    {
+        for(int i=start;i<=end;i++)
+            System.out.print(words[i]+" ");
+        System.out.println();
+    }
+    private static int[][] cost(String[] words, int width)
+    {
+        int n=words.length;
+        int[][] matrix=new int[n][n];
+        for(int i=0;i<n;i++)
+        {
+            int len=-1;
+            for(int j=i;j<n;j++)
+            {
+                len=len+1+words[j].length();
+                if(len<=width)
+                    matrix[i][j]=(width-len)*(width-len);
+                else
+                    matrix[i][j]=Integer.MAX_VALUE;
+            }
+        }
+        return matrix;
     }
 }
-

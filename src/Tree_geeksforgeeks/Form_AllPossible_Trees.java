@@ -11,74 +11,56 @@ public class Form_AllPossible_Trees {
     public static void main(String[] args)
     {
         int[] Inorder={4, 5, 7};
-        //generate(Inorder);
+        generate(Inorder);
 
     }
     private static void generate(int[] array)
     {
-        ArrayList<Node> trees=new ArrayList<>();
-        for(int pos=0;pos<array.length;pos++) {
-          Set<Integer> visited=new HashSet<>();
-          //  generateUtil(pos,pos-1,array.length-1, array,visited, trees);
-            for(Node r: trees)
-            {PreOrder(r);
-                System.out.println();}
-        }
-    }
-    private static Node generateUtil(int start, int end, int[] array,Set<Integer> visited,ArrayList<Node> trees)
-    {
-        if(end==start) {
-            //visited
-            return new Node(array[end]);
-        }
-        if(end>start||start<0||end>=array.length)
-            return null;
-
-        for(int i=start;i<=end;i++)
+        int l=array.length;
+        ArrayList<Node> trees=new ArrayList<Node>();
+        for(int i=0;i<l;i++)
         {
-            int element=array[i];
-            if(visited.contains(element))
-                continue;
-            visited.add(element);
-            //generateUtil(i,end,)
+            generateUtil(0,i-1,i+1,l,i,array,trees,true);
+                for(Node node: trees)
+                {
+                    preOrder(node);
+                    System.out.println();
+                }
+                trees.clear();
+
         }
-return null;
+
     }
-//    private static void generateUtil(int pos,int start, int end, int[] array,Set<Integer> visited,ArrayList<Node> trees)
-//    {
-//        if(pos<0||pos>=array.length)
-//            return ;
-//
-//        while(start>=0&&start<pos)
-//        {
-//            Node root=new Node(pos);
-//            root.left=new Node(array[start]);
-//            visited.add(array[start]);
-//            if(visited.size()==1)
-//                trees.add(root);
-//            generateUtil(pos-1,start+1,pos, array,visited, trees);
-//            visited.remove(array[start]);
-//            start++;
-//        }
-//
-//        while(end<array.length&&end>pos)
-//        {
-//            Node root=new Node(pos);
-//            root.right=new Node(array[end]);
-//            visited.add(array[end]);
-//            if(visited.size()==1)
-//                trees.add(root);
-//            generateUtil(pos+1,pos+1,end, array,visited, trees);
-//            visited.remove(array[end]);
-//            end--;
-//        }
-//    }
-    private static void PreOrder(Node node)
+    private static void preOrder(Node root)
     {
-        if(node==null)
+        if(root==null)
             return;
-        System.out.print(node.data+" ");
-        PreOrder(node.left);
-        PreOrder(node.right);
+        System.out.print(root.data+" ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+    private static Node generateUtil(int start1, int end1,int start2, int end2,int pos, int[] array,ArrayList<Node> trees, boolean isroot)
+    {
+        if(start1>end1&&start2>end2)
+            return null;
+        int l=array.length;
+        //if(start1<0||start2<0||end1>=array.length||end2>=array.length)
+        if(pos<0||pos>=l)
+            return null;
+        if(end2==start2&&end1>start1&&end2<l&&start2>=0)
+            return new Node(array[end2]);
+        if(end1==start1&&end2>start2&&end1<l&&start1>=0)
+            return new Node(array[end1]);
+
+          for(int k1=start1;k1<=end1;k1++) {
+              for (int k2 = start2; k2 <= end2; k2++) {
+                  Node root = new Node(array[pos]);
+                  root.left = generateUtil(start1,k1-1, start2, k1-1, k1, array, trees, false);
+                  root.right = generateUtil(k2+1, end1, k2+1, end2, k2, array, trees, false);
+                  if (isroot)
+                      trees.add(root);
+              }
+          }
+          return null;
     }
 }

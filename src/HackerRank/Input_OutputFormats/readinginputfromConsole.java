@@ -1,41 +1,37 @@
-package HackerRank;
+package HackerRank.Input_OutputFormats;
 
 /**
  * Created by Ritu on 2/26/17.
  */
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+
+import java.io.*;
 import java.util.StringTokenizer;
 
 
 public class readinginputfromConsole {
     private static StringTokenizer st;
 
-    public static void nextLine(BufferedReader br) throws IOException
+    private static void nextLine(BufferedReader br) throws IOException
     {
         st = new StringTokenizer(br.readLine());
     }
 
-    public static int nextInt()
+    private static int nextInt()
     {
         return Integer.parseInt(st.nextToken());
     }
 
-    public static String next()
+    private static String next()
     {
         return st.nextToken();
     }
 
-    public static long nextLong()
+    private static long nextLong()
     {
         return Long.parseLong(st.nextToken());
     }
 
-    public static double nextDouble()
+    private static double nextDouble()
     {
         return Double.parseDouble(st.nextToken());
     }

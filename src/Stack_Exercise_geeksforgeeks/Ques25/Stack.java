@@ -1,4 +1,4 @@
-package Stack_Exercise.Ques25;
+package Stack_Exercise_geeksforgeeks.Ques25;
 
 public class Stack {
 	int top;

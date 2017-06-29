@@ -1,4 +1,4 @@
-package Stack_Exercise.Ques14;
+package Stack_Exercise_geeksforgeeks.Ques14;
 
 public class TwoStack {
 	int top1;

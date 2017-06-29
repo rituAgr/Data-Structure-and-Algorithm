@@ -1,4 +1,4 @@
-package Tree_geeksforgeeks;
+package Advanced_DS;
 
 /**
  * Created by Ritu on 1/10/17.
@@ -33,7 +33,7 @@ public class AVL_Tree
         Node root=new Node(12);
         int[] array={8,5,4,11,18,17};
 
-        //Insetion
+        //Insertion
         for(int i:array)
             root=insert(root,i);
         Inorder(root);
@@ -101,21 +101,28 @@ public class AVL_Tree
         if(node==null)
             return new Node(data);
 
-        if(node.data==data)
+        if(node.data==data)//duplicate keys are not allowed
             return node;
         if(data<node.data)
             node.left=insert(node.left,data);
         else
             node.right=insert(node.right,data);
+
+
         int l_height=0,r_height=0;
-        if(node.left==null)
-            node.height=node.right.height+1;
-        else if(node.right==null)
-            node.height=node.left.height+1;
-        else if(node.right.height>node.left.height)
-            node.height=node.right.height+1;
+        if(node.left==null&&node.right==null)
+            node.height=1;
         else
-            node.height=node.left.height+1;
+        {
+            if (node.left == null)
+                node.height = node.right.height + 1;
+            else if (node.right == null)
+                node.height = node.left.height + 1;
+            else if (node.right.height > node.left.height)
+                node.height = node.right.height + 1;
+            else
+                node.height = node.left.height + 1;
+        }
 
         if(Math.abs(getHeight(node.left)-getHeight(node.right))>2)
             node=check_balance(node);
@@ -123,8 +130,12 @@ public class AVL_Tree
     }
     private static Node check_balance(Node node)
     {
+       // int left_height=getHeight(node.left);
+        //int right_height=getHeight(node.right);
+
         int left_height=getHeight(node.left);
         int right_height=getHeight(node.right);
+
         if(Math.abs(left_height-right_height)<2)
             return node;
         if(left_height>right_height)
@@ -139,7 +150,7 @@ public class AVL_Tree
                 temp1.right=null;
                 node.left=temp2;
                 temp2.left=temp1;
-                temp2.height++;
+                //temp2.height++;
                 temp1.height--;
             }
             node=rotate_Clockwise(node);
@@ -168,11 +179,12 @@ public class AVL_Tree
     {
         if(node==null)
             return 0;
-        if(node.left==null&&node.right==null)
-            return 1;
-        int l=getHeight(node.left);
-        int r=getHeight(node.right);
-        return l-r;
+        return node.height;
+//        if(node.left==null&&node.right==null)
+//            return 1;
+//        int l=getHeight(node.left);
+//        int r=getHeight(node.right);
+//        return l-r;
     }
     private static Node rotate_Clockwise(Node node)
     {

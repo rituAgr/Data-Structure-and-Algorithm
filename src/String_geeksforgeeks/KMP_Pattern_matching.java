@@ -11,10 +11,11 @@ public class KMP_Pattern_matching {
     }
     private static void find(String txt, String pattern)
     {
-        int start=0;
+
         int l=pattern.length();
         int[] len=KMP_suffix_Prefix(pattern);
-        int pos=0;
+        int pos=0;// For long  String position
+        int start=0;// for pattern string position
         while(pos<txt.length())
         {
             if(txt.charAt(pos)==pattern.charAt(start))
@@ -28,17 +29,16 @@ public class KMP_Pattern_matching {
                 pos++;
             if(start==l)
             {
-                System.out.println("Position is "+((pos-1)-(l-1)));
+                System.out.println("Position is "+(pos-l));
                 return;
             }
         }
-
-
     }
     private static int[] KMP_suffix_Prefix(String s)
     {
         int l=s.length();
         int[] len=new int[l];
+        // Here I  have taken j & i opposite of tushar roy video
         int i=0,j=1;
         while(j<l)
         {

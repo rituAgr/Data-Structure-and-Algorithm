@@ -1,4 +1,4 @@
-package HackerRank.Complete_QheapQues;
+package HackerRank;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 /**
+ * COMPLETED
  * Created by Ritu on 2/27/17.
  * https://www.hackerrank.com/challenges/qheap1
  */

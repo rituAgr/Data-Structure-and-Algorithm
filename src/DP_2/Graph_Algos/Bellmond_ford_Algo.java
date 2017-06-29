@@ -50,7 +50,7 @@ public class Bellmond_ford_Algo {
                 int v=Edges[j].dest;
                 int wt=Edges[j].weight;
 
-                if(distance[v]>distance[u]+wt)
+                if(distance[u]!=Integer.MAX_VALUE&&distance[v]>distance[u]+wt)
                 {
                     distance[v]=distance[u]+wt;
                     parent[v]=u;
@@ -90,9 +90,5 @@ public class Bellmond_ford_Algo {
             System.out.println(route.toString());
             System.out.println("Sum is "+distance[index]);
         }
-    }
-    private static void relax()
-    {
-
     }
 }

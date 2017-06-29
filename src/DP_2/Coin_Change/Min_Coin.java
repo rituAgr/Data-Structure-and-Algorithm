@@ -25,21 +25,23 @@ public class Min_Coin
         Arrays.fill(parent,-1);
         Arrays.fill(minCoins,INF);
         minCoins[0]=0;
+// This problem can bedone by matrix of sum of coins denomination * sum; same as Total_NumWays coin problem
+        // the space and time complexity would be O(n*V)
 
         for(int i=0;i<l;i++)
         {  for(int j=1;j<=total;j++)
+        {
+            if(j<coins[i])
+                continue;
+            if(minCoins[j-coins[i]]==INF)
+                continue;
+            if(minCoins[j]>(1+minCoins[j-coins[i]]))
             {
-                if(j<coins[i])
-                    continue;
-                if(minCoins[j-coins[i]]==INF)
-                        continue;
-                if(minCoins[j]>(1+minCoins[j-coins[i]]))
-                {
-                    minCoins[j]=1+minCoins[j-coins[i]];
-                    parent[j]=i;
-                }
-                System.out.print(minCoins[j]+" ");
+                minCoins[j]=1+minCoins[j-coins[i]];
+                parent[j]=i;
             }
+            System.out.print(minCoins[j]+" ");
+        }
 
         }
         System.out.println("\nMinimum number of coins required is "+minCoins[total]);

@@ -10,7 +10,7 @@ import java.util.HashMap;
  * Created by Ritu on 3/1/17.
  https://www.hackerrank.com/challenges/sparse-arrays
  */
-public class SparseArray {
+public class SparseArray_Trie {
     class TrieNode {
         HashMap<Character, TrieNode> hm;
         boolean isEnd;
@@ -25,7 +25,7 @@ public class SparseArray {
 
     TrieNode head;
 
-    SparseArray() {
+    SparseArray_Trie() {
         head = null;
     }
 
@@ -84,7 +84,7 @@ public class SparseArray {
         nextLine(br);
         int count = nexInt();
 
-        SparseArray trie = new SparseArray();
+        SparseArray_Trie trie = new SparseArray_Trie();
         for (int i = 0; i < count; i++) {
             nextLine(br);
             String s = nextString();

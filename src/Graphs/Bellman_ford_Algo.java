@@ -38,8 +38,10 @@ public class Bellman_ford_Algo {
 		int[] distance=new int[vertex];
 		Arrays.fill(distance,100000);
 		distance[start]=0;
+
 		int[] parent=new int[vertex];
 		Arrays.fill(parent,-1);
+
 		//Calculation the minimum distances
 		for(int i=0;i<vertex-1;i++)
 		{

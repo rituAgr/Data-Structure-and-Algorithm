@@ -1,4 +1,4 @@
-package Stack_Exercise.Ques10;
+package Stack_Exercise_geeksforgeeks.Ques10;
 
 public class Palidrome {
 	int top;

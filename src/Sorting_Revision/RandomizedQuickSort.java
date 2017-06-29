@@ -18,9 +18,11 @@ public class RandomizedQuickSort {
     {
         if(start>=end)
             return;
+
         int range=end-start+1;
         int pIndex=start+(int)(Math.random()*range);
         swap(arr,pIndex,end);
+
         int pivot=partition(arr, start, end);
         randomizedQuickSort(arr,start,pivot-1);
         randomizedQuickSort(arr,pivot+1,end);

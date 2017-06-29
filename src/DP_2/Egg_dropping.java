@@ -4,11 +4,12 @@ package DP_2;
  * Created by Ritu on 2/19/17.
  * https://www.youtube.com/watch?v=3hcaVyX00_4&t=595s
  * http://www.geeksforgeeks.org/dynamic-programming-set-11-egg-dropping-puzzle/
- * Time complexity :
+ * to find max no of trial required to know from which floor egg breaks(given the n number of floors and k eggs)
+ * Time complexity : no of eggs* (no of floor)^2 =
  */
 public class Egg_dropping {
     public static void main(String args[]) {
-int floor=6;
+        int floor=6;
         int eggs=2;
         find(floor,eggs);
     }
@@ -18,6 +19,7 @@ int floor=6;
         for(int floor=1;floor<=floors;floor++)
             matrix[1][floor]=floor;
         for(int egg=2;egg<=eggs;egg++)
+        {
             for(int floor=1;floor<=floors;floor++)
             {
                 if(floor<egg)
@@ -32,12 +34,13 @@ int floor=6;
                     if(min>val)
                         min=val;
                 }
-               matrix[egg][floor]=min;
+                matrix[egg][floor]=min;
             }
+        }
         for(int egg=1;egg<=eggs;egg++)
         { for(int floor=1;floor<=floors;floor++)
-                System.out.print(matrix[egg][floor]+"  ");
-        System.out.println();}
+            System.out.print(matrix[egg][floor]+"  ");
+            System.out.println();}
         System.out.println(matrix[eggs][floors]);
     }
 }

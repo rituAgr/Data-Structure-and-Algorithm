@@ -1,4 +1,4 @@
-package Stack_Exercise.Ques6;
+package Stack_Exercise_geeksforgeeks.Ques6;
 
 public class MinValue {
 	int top;

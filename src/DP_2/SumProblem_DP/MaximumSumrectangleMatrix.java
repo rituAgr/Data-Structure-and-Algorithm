@@ -25,81 +25,74 @@ public class MaximumSumrectangleMatrix
                 { 2, -2, -1,  4, -5},
                 {-3,  3,  1,  0,  3}};
         find(matrix);
+        System.out.println("**********");
+        matrix =new int[][]{{1, 2, -1, -4, -20},
+                {-8, -3, 4, 2, 1},
+                {3, 8, 10, 1, 3},
+                {-4, -1, 1, 7, -6}};
+        find(matrix);
     }
     private static void find(int[][] matrix) {
-        int row = matrix.length;
-        int col = matrix[0].length;
+        int maxSum=0;
+        int maxLeft=0;
+        int maxRight=0;
+        int maxUp=0;
+        int maxDown=0;
+        int n=matrix[0].length;
+        int row=matrix.length;
 
-        int[] arr;
-        int maxSum = 0;
-        int maxCurrentSum = 0;// It is not not used but stil..
-        int L = 0, R = 0;
-        int maxLeft = 0, maxRight = 0;
-        int maxUp = 0, maxDown = 0;
-
-        while (L < col)
+        for(int L=0;L<n;L++)
         {
-            arr = new int[row];
-            R=L;
-            while(R<col) {
-                for (int j = 0; j < row; j++)
-                    arr[j] = arr[j] + matrix[j][R];
-                ArrayList<Integer> r=kadane(arr);
-                if(maxSum<r.get(2))
+            int sum[]=new int[row];
+            for(int R=L;R<n;R++)
+            {
+                for(int i=0;i<row;i++)
+                    sum[i]+=matrix[i][R];
+                ArrayList<Integer> res=kadane(sum);
+                if(res.get(0)>maxSum)
                 {
-                    maxSum=r.get(2);
+                    maxSum=res.get(0);
                     maxLeft=L;
                     maxRight=R;
-                    maxUp=r.get(0);
-                    maxDown=r.get(1);
+                    maxUp=res.get(1);
+                    maxDown=res.get(2);
                 }
-                R++;
             }
-            L++;
         }
-        // printing result
-        System.out.println("maxLeft "+maxLeft);
-        System.out.println("maxRight "+maxRight);
-        System.out.println("maxUp "+maxUp);
-        System.out.println("maxDown "+maxDown);
 
-        for(row=maxUp;row<=maxDown;row++)
+        System.out.println("Maximum sum is "+maxSum);
+
+        for(int i=maxUp;i<=maxDown;i++)
         {
-            for(col=maxLeft;col<=maxRight;col++)
-                System.out.print(matrix[row][col]+" ");
+            for(int j=maxLeft;j<=maxRight;j++)
+                System.out.print(matrix[i][j]+" ");
             System.out.println();
         }
-        System.out.println("Maximum Sum is "+maxSum);
-
-
     }
     private static ArrayList<Integer> kadane(int[] arr)
     {
-        int maxEndingHere=0;
-        int maxSoFar=0;
-        int start=-1,end=-1;
-        int s=0;
-
         ArrayList<Integer> result=new ArrayList<Integer>();
-
+        int maxEndingHere=0;
+        int maxTillNow=0;
+        int s=0,start=0,end=0;
         for(int i=0;i<arr.length;i++)
         {
-            maxSoFar=maxSoFar+arr[i];
-            if(maxSoFar<0)
+            maxEndingHere+=arr[i];
+            if(maxEndingHere<0)
             {
-                maxSoFar=0;
+                maxEndingHere=0;
                 s=i+1;
             }
-            if(maxEndingHere<maxSoFar)
+            if(maxTillNow<maxEndingHere)
             {
-                maxEndingHere=maxSoFar;
+                maxTillNow=maxEndingHere;
                 start=s;
                 end=i;
             }
         }
+        result.add(maxTillNow);
         result.add(start);
         result.add(end);
-        result.add(maxEndingHere);
         return result;
     }
 

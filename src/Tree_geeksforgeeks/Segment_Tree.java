@@ -10,6 +10,8 @@ import java.util.Arrays;
  * below youtube is optimzed version of segment tree
  * https://www.youtube.com/watch?v=xuoQdt5pHj0
  * Time complexity to construct : O(n)
+ * Maintainance with unoptimzed : O(n)
+ * Maintainece with optimzed : O(log n)
  * Time complexity to query : O(logn)
  */
 public class Segment_Tree {

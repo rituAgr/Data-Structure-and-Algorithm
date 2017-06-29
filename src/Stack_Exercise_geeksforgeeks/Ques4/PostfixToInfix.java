@@ -1,4 +1,4 @@
-package Stack_Exercise.Ques4;
+package Stack_Exercise_geeksforgeeks.Ques4;
 
 public class PostfixToInfix {
 	int top;

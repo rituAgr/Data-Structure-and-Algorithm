@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * http://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/
  * Time complexity = O(log n)
  */
-public class RotatedArray_FindMinMaxElement
+public class RotatedArray_FindMinElement
 {
     public static void main(String args[])
     {

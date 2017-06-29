@@ -1,4 +1,4 @@
-package Trie_ques;
+package Advanced_DS;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,9 +30,9 @@ public class Trie
         t.delete("abgl");
         System.out.println("After deletion abgl "+t.search("abgl"));
 
-        System.out.println("before deletion abgl "+t.search("abcd"));
+        System.out.println("before deletion abcd "+t.search("abcd"));
         t.delete("abcd");
-        System.out.println("After deletion abgl "+t.search("abcd"));
+        System.out.println("After deletion abcd "+t.search("abcd"));
     }
     class TrieNode
     {
@@ -58,7 +58,7 @@ public class Trie
             Map<Character, TrieNode> children=curr.children;
             if(!children.containsKey(c))
                 children.put(c,new TrieNode());
-            curr=curr=children.get(c);
+            curr=children.get(c);
         }
         curr.isEnd=true;
     }
@@ -71,29 +71,24 @@ public class Trie
             Map<Character, TrieNode> children=curr.children;
             if(!children.containsKey(c))
                 return false;
-            curr=curr=children.get(c);
+            curr=children.get(c);
         }
         return curr.isEnd;
     }
     void delete(String word)
     {
-       if(!search(word))
-           return ;
+        if(!search(word))
+            return ;
         TrieNode curr=root;
-        //Stack<Map<Character, TrieNode>> st=new Stack();
         Stack<TrieNode> st=new Stack();
-        //st.push(root.children);
         st.push(curr);
         for(int i=0;i<word.length();i++)
         {
             char c = word.charAt(i);
             Map<Character, TrieNode> children=curr.children;
-            curr=curr=children.get(c);
-            //st.push(curr.children);
+            curr=children.get(c);
             st.push(curr);
         }
-        if(curr.isEnd==false)
-            return;
         curr.isEnd=false;
         if(curr.children.size()>0)
             return;

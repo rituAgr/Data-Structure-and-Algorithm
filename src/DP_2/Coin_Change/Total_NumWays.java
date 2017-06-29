@@ -6,14 +6,14 @@ package DP_2.Coin_Change;
  * https://www.youtube.com/watch?v=_fgjrs570YE&t=209s
  * Time complexity - O(n*V)
  */
-public class Min_NumWays {
+public class Total_NumWays {
     public static void main(String args[])
     {
         int coins[] =  {1,2,3};//{9, 6, 5, 1};
         int V = 5;//11;
-        System.out.println("Minimum coins required is "+ minCoins(coins, V) );
+        System.out.println("Minimum coins required is "+ ways(coins, V) );
     }
-    private static int minCoins(int[]coins, int V)
+    private static int ways(int[]coins, int V)
     {
         int l=coins.length;
         if(l==0)

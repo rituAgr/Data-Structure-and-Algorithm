@@ -52,9 +52,12 @@ public class KruskalMST
         set.makeSet(ver);
         Set<Edge> result=new HashSet<>();
         for(int i=0;i<edges.length;i++)
+        {
             if(set.union(edges[i].Vertex1,edges[i].Vertex2))
                 result.add(edges[i]);
-
+            if(result.size()==ver-1)
+                break;
+        }
         return result;
     }
      class DisjointSet

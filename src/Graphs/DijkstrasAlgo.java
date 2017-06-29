@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 /*
  * http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
+ * Time Complexity = O(v^2) - adjacency matrix
+ * Time Complexity = O(ElogV) - adjacency list
  */
 public class DijkstrasAlgo {
 
@@ -35,12 +37,16 @@ public class DijkstrasAlgo {
 	private static void Dijkstras(int[][] graph)
 	{
 		int n=graph.length;
+
 		int weight[]=new int[n];
 		Arrays.fill(weight,Integer.MAX_VALUE);
 		weight[0]=0;
+
 		int[] parent=new int[n];
 		Arrays.fill(parent,-1);
-		boolean[] isPresent=new boolean[n]; 
+
+		boolean[] isPresent=new boolean[n];
+
 		for(int i=0;i<n;i++)
 		{
 			int u=minKey(isPresent, weight);
@@ -53,9 +59,7 @@ public class DijkstrasAlgo {
 				parent[v]=u;
 			}
 		}
-		//printing the paths
-	/*	for(int i=1;i<n;i++)
-			System.out.println(parent[i]+" -> "+i+"  = "+weight[i]);*/
+
 		for(int i=1;i<n;i++)
 		{
 			int index=i;

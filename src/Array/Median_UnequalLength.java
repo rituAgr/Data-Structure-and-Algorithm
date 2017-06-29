@@ -6,7 +6,7 @@ package Array;
 public class Median_UnequalLength {
     public static void main(String args[])
     {
-        int[] arr1={900};//{1, 3, 6,7,9};
+        int[] arr1={1,900};//{1, 3, 6,7,9};
         int[] arr2={5, 8, 10, 20};
         int end1=arr1.length-1;
         int end2=arr2.length-1;

@@ -22,7 +22,7 @@ public class Breadth_First_Traversal
         this.v=v;
         for(int i=0;i<v;i++) {
             LinkedList<Integer> list=new LinkedList<Integer>();
-            list.add(i);
+
             hm.put(i,list);
         }
     }
@@ -45,6 +45,8 @@ public class Breadth_First_Traversal
         // The sole purpose of this boolean array to know if the given node is already visited.
         //We can do we arrayListname.contains function too the same thing, but its inefficient
         boolean visited[]=new boolean[g.v];
+        res.add(start);
+        visited[start]=true;
         g.BFS( start, res, visited);
         for(Integer num:res)
             System.out.print(num+" ");

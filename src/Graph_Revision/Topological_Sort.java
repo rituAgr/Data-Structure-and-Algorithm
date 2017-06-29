@@ -57,6 +57,7 @@ public class Topological_Sort
     }
     private static void topological_SortUtil(graph g,int start, Stack<Integer> res,boolean[] visited)
     {
+        visited[start]=true;
         LinkedList<Integer> list=g.hm.get(start);
         for(int i=0;i<list.size();i++)
         {
@@ -64,7 +65,7 @@ public class Topological_Sort
             if(!visited[element])
              topological_SortUtil(g,element,res,visited);
         }
-        visited[start]=true;
+
         res.push(start);
     }
 }

@@ -2,14 +2,16 @@ package Matrix_revision;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 /**
  * Created by Ritu on 2/10/17.
+ * http://www.geeksforgeeks.org/print-unique-rows/
+ * Time complexity : O(m*n)
+ * Space(Auxillary) complexity : O(m*n)
  */
-public class Print_unique_rows {
+public class Print_unique_rows_Trie {
     TrieNode root;
     class TrieNode
     {
@@ -58,7 +60,7 @@ public class Print_unique_rows {
                 {1, 0, 1, 1, 0},
                 {0, 1, 0, 0, 1},
                 {1, 0, 1, 0, 0}};
-        Print_unique_rows trie=new  Print_unique_rows();
+        Print_unique_rows_Trie trie=new Print_unique_rows_Trie();
     for(int i=0;i<matrix.length;i++)
         //for(int j=0;j<matrix[0].length;j++)
         trie.insert(matrix[i]);

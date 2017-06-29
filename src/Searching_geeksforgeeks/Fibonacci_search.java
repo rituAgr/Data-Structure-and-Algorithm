@@ -8,7 +8,7 @@ public class Fibonacci_search {
 	public static void main(String[] args)
 	{
 		int arr[]={2, 3, 4, 10, 40};
-		int x= 10;
+		int x= 40;
 		int pos=find(arr,x);
 		System.out.println("The position is "+pos);
 	}
@@ -29,7 +29,7 @@ public class Fibonacci_search {
 		}
 		int offset=-1;
 
-		while(fib2>=1)
+		while(fibM>1)
 		{
 			int i=Math.min(fib2+offset, n-1);
 			if(arr[i]==x)
@@ -48,8 +48,8 @@ public class Fibonacci_search {
 				fib2=fibM-fib1;
 			}
 		}
-		if(arr[offset+1]==x)
-			return offset+1;
+		if(arr[n-1]==x)
+			return (n-1);
 		return -1;
 	}
 }
